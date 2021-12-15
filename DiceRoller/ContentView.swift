@@ -8,9 +8,30 @@
 import SwiftUI
 
 struct ContentView: View {
+  
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        TabView {
+            
+            DiceView()
+                .tabItem {
+                    Image(systemName: "dice.fill")
+                    Text("Roll the Dice")
+                }
+            
+            ResultsView()
+                .tabItem {
+                    Image(systemName: "list.bullet.rectangle.portrait.fill")
+                    Text("Results")
+                }
+            
+        }
+        .onAppear {
+            if #available(iOS 15.0, *) {
+                let appearance = UITabBarAppearance()
+                UITabBar.appearance().scrollEdgeAppearance = appearance
+                }
+            }
     }
 }
 

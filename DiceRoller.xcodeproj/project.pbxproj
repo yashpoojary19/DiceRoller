@@ -14,6 +14,10 @@
 		B62BA86C276A33060040E268 /* DiceRollerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62BA86B276A33060040E268 /* DiceRollerTests.swift */; };
 		B62BA876276A33060040E268 /* DiceRollerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62BA875276A33060040E268 /* DiceRollerUITests.swift */; };
 		B62BA878276A33060040E268 /* DiceRollerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62BA877276A33060040E268 /* DiceRollerUITestsLaunchTests.swift */; };
+		B62BA886276A33280040E268 /* DiceRoller.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B62BA884276A33280040E268 /* DiceRoller.xcdatamodeld */; };
+		B62BA888276A33660040E268 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62BA887276A33660040E268 /* DataController.swift */; };
+		B62BA88A276A35860040E268 /* DiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62BA889276A35860040E268 /* DiceView.swift */; };
+		B62BA88C276A35C50040E268 /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62BA88B276A35C50040E268 /* ResultsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +48,10 @@
 		B62BA871276A33060040E268 /* DiceRollerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DiceRollerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B62BA875276A33060040E268 /* DiceRollerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceRollerUITests.swift; sourceTree = "<group>"; };
 		B62BA877276A33060040E268 /* DiceRollerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceRollerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B62BA885276A33280040E268 /* DiceRoller.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DiceRoller.xcdatamodel; sourceTree = "<group>"; };
+		B62BA887276A33660040E268 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		B62BA889276A35860040E268 /* DiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceView.swift; sourceTree = "<group>"; };
+		B62BA88B276A35C50040E268 /* ResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,8 +102,12 @@
 		B62BA859276A33050040E268 /* DiceRoller */ = {
 			isa = PBXGroup;
 			children = (
+				B62BA889276A35860040E268 /* DiceView.swift */,
 				B62BA85A276A33050040E268 /* DiceRollerApp.swift */,
 				B62BA85C276A33050040E268 /* ContentView.swift */,
+				B62BA88B276A35C50040E268 /* ResultsView.swift */,
+				B62BA884276A33280040E268 /* DiceRoller.xcdatamodeld */,
+				B62BA887276A33660040E268 /* DataController.swift */,
 				B62BA85E276A33060040E268 /* Assets.xcassets */,
 				B62BA860276A33060040E268 /* Preview Content */,
 			);
@@ -258,6 +270,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B62BA85D276A33050040E268 /* ContentView.swift in Sources */,
+				B62BA88C276A35C50040E268 /* ResultsView.swift in Sources */,
+				B62BA88A276A35860040E268 /* DiceView.swift in Sources */,
+				B62BA888276A33660040E268 /* DataController.swift in Sources */,
+				B62BA886276A33280040E268 /* DiceRoller.xcdatamodeld in Sources */,
 				B62BA85B276A33050040E268 /* DiceRollerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -605,6 +621,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B62BA884276A33280040E268 /* DiceRoller.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B62BA885276A33280040E268 /* DiceRoller.xcdatamodel */,
+			);
+			currentVersion = B62BA885276A33280040E268 /* DiceRoller.xcdatamodel */;
+			path = DiceRoller.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B62BA84F276A33050040E268 /* Project object */;
 }
