@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreHaptics
 
 struct DiceView: View {
     
@@ -18,13 +19,14 @@ struct DiceView: View {
     
     let diceSides: [Int] = [4, 6, 8, 10, 12, 20, 100]
     
+    @State private var engine: CHHapticEngine?
     
-    @State private var currentSelection = 1
-    @State private var numberOfTimes = 1
+    
+    @State private var currentSelection = 2
+    @State private var numberOfTimes = 0
     @State private var resultingCombination = ""
-    var totaledResult: Int {
-        result(in: currentSelection, for:numberOfTimes)
-    }
+    @State private var finalResult = 2
+
     
     var body: some View {
         NavigationView {
@@ -67,28 +69,30 @@ struct DiceView: View {
                 }
                 
             }
-                
-                
-                
-                
-                   
-                
-                
-                
-      
             .navigationTitle("Roll Them!")
             }
+            .onAppear {
+                saveData()
+            }
             .alert("Here's what you got", isPresented: $calculateTotal) {
-                Button("Your result is \(totaledResult)", role: .cancel, action: {
-                    let context = Result(context: moc)
-                    context.sum = Int64(totaledResult)
-                    context.sides = Int64(diceSides[currentSelection])
-
-                    
-                    try? moc.save()
+                Button("Your result is \(finalResult)", role: .cancel, action: {
+                    prepareHaptics()
+                    complexSuccess()
+                    saveData()
                 })
             }
+            
         }
+    }
+    
+    func saveData() {
+        finalResult =  result(in: currentSelection, for: numberOfTimes)
+        let context = Result(context: moc)
+        context.sum = Int64(finalResult)
+        context.sides = Int64(diceSides[currentSelection])
+
+        
+        try? moc.save()
     }
     
     
@@ -119,6 +123,45 @@ struct DiceView: View {
             print(finalArray)
             let sum = finalArray.reduce(0, +)
             return sum
+    }
+    
+    func prepareHaptics() {
+        
+        guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else {
+            return
+        }
+        
+        
+        do {
+            engine = try CHHapticEngine()
+            try engine?.start()
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func complexSuccess() {
+        
+        guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else {
+            return
+        }
+        
+        var events = [CHHapticEvent]()
+        
+        for i in stride(from: 0, to: 1, by: 0.1) {
+            let intensity = CHHapticEventParameter(parameterID: .hapticIntensity, value: Float(i))
+            let sharpness = CHHapticEventParameter(parameterID: .hapticSharpness, value: Float(i))
+            let event = CHHapticEvent(eventType: .hapticTransient, parameters: [intensity, sharpness], relativeTime: i)
+            events.append(event)
+        }
+        
+        do {
+            let pattern = try CHHapticPattern(events: events, parameters: [])
+            let player = try engine?.makePlayer(with: pattern)
+            try player?.start(atTime: 0)
+        } catch {
+            print(error.localizedDescription)
+        }
     }
 }
 
